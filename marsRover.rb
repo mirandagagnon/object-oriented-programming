@@ -5,38 +5,46 @@ class Rover
     @x = x
     @y = y
     @direction = direction
+
   end #end of initialize
 
-  def read_instruction
+  def move (@direction)
+    case move
+    when @direction == "N"
+      then @y += 1
+    when @direction == "S"
+      then @y -= 1
+    when @direction == "E"
+      then @x += 1
+    when @direction == "W"
+      then @x -= 1
+    end
+end #end of move method
 
-
-
-
-  end #end read_instruction
 
 end #end rover class
 
-def new_rover
-  puts "Please enter the width of your plateau:"
-  plateau_width = gets.chomp.to_i
+def read_instruction
+  #get input from the user
+  puts "What is the size of your plateau (ex. 5 10)?"
+  plateau_size = gets.chomp.split(" ")
 
-  puts "Please enter the length of your plateau:"
-  plateau_length = gets.chomp.to_i
+  puts "What is the initial location of your rover (ex. 5, 5, N)?"
+  initial = gets.chomp.split(" ")
 
-  puts "Please enter the x co-ordinate of your rover:"
-  x_inital = gets.chomp
-
-  puts "Please enter the y co-ordinate of your rover:"
-  y_initial = gets.chomp
-
-  puts "Please enter the starting direction of your rover (ex. N, S, E, W):"
-  direction_initial = gets.chomp
-
-  rover = Rover.new(x_inital, y_initial, direction_initial)
-
+  #get instructions from user
   puts "Enter instructions for how you would like your rover to move (ex.LMRML):"
   instructions = gets.chomp.to_s
 
-end #new_rover method
+  #create new rover object
+  rover = Rover.new(initial[0], initial[1], initial[2])
 
-new_rover
+  #get instructions from user
+  puts "Enter instructions for how you would like your rover to move (ex.LMRML):"
+  instructions = gets.chomp.split(" ")
+
+
+
+end #end read_instruction
+
+read_instruction
